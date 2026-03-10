@@ -49,13 +49,14 @@ export interface SiteConfig {
 }
 
 const siteConfig: SiteConfig = {
-  name: 'Velocity',
-  description: 'A modern website built with Astro and Tailwind CSS',
+  name: 'Velocity Web Studio',
+  description:
+    'Helping businesses accelerate their online presence with stunning websites and digital solutions.',
   url: SITE_URL || 'https://example.com',
   ogImage: '/og-default.png',
-  author: 'Southwell Media',
+  author: 'Extensibl Media',
   // Demo contact info - replace with your actual business details
-  email: 'hello@example.com',
+  email: 'hello@extensiblmedia.com',
   phone: '+1 (555) 123-4567',
   address: {
     street: '123 Main St',
@@ -64,9 +65,7 @@ const siteConfig: SiteConfig = {
     zip: '75001',
     country: 'US',
   },
-  socialLinks: [
-    'https://github.com/southwellmedia',
-  ],
+  socialLinks: ['https://github.com/southwellmedia'],
   // Twitter metadata - update with your actual handles or remove
   // twitter: {
   //   site: '@yourhandle',
@@ -86,7 +85,7 @@ const siteConfig: SiteConfig = {
       svg: '/favicon.svg',
     },
     colors: {
-      themeColor: '#F94C10',
+      themeColor: '#09C6E3',
       backgroundColor: '#ffffff',
     },
   },
