@@ -8,7 +8,6 @@ import netlify from '@astrojs/netlify';
 export default defineConfig({
   site: process.env.SITE_URL || 'https://example.com',
   adapter: netlify(),
-  output: 'static',
   env: {
     schema: {
       SITE_URL: envField.string({ context: 'server', access: 'public', optional: true }),

@@ -57,7 +57,7 @@ const tabContent: Record<
       'Fast load times, clear calls-to-action, and trust signals throughout',
       'Built to rank and built to convert — not just look good',
     ],
-    image: '/images/mockups/website-mockup.png',
+    image: 'src/assets/images/web-design.webp',
     imageAlt: 'Website design mockup for home service business',
   },
   gbp: {
@@ -70,7 +70,7 @@ const tabContent: Record<
       'Regular GBP posts to signal activity to Google',
       'Photo uploads and Q&A management included',
     ],
-    image: '/images/mockups/gbp-mockup.png',
+    image: 'src/assets/images/Google-My-Business.jpg',
     imageAlt: 'Google Business Profile optimization mockup',
   },
   seo: {
@@ -83,7 +83,7 @@ const tabContent: Record<
       'Citation building across top directories',
       'Monthly performance reports so you see the progress',
     ],
-    image: '/images/mockups/seo-mockup.png',
+    image: 'src/assets/images/local-seo.jpg',
     imageAlt: 'Local SEO rankings mockup',
   },
   reviews: {
@@ -96,7 +96,7 @@ const tabContent: Record<
       'Review monitoring across Google and other platforms',
       'New reviews highlighted on your website automatically',
     ],
-    image: '/images/mockups/reviews-mockup.png',
+    image: 'src/assets/images/google-reviews.png',
     imageAlt: 'Review management dashboard mockup',
   },
   support: {
@@ -109,7 +109,7 @@ const tabContent: Record<
       'Analytics and performance tracking with monthly summary',
       'One point of contact for everything digital',
     ],
-    image: '/images/mockups/support-mockup.png',
+    image: 'src/assets/images/web-support.png',
     imageAlt: 'Ongoing support and maintenance mockup',
   },
 };
@@ -154,7 +154,13 @@ export function VelocityFeatureTabs() {
             return (
               <div key={tab.id} data-tab-content={tab.id} className="space-y-6">
                 {/* Mockup Image */}
-                <MockupPlaceholder alt={content.imageAlt} />
+                <div className="border-border aspect-video w-full overflow-hidden rounded-lg border">
+                  <img
+                    src={content.image}
+                    alt={content.imageAlt}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
 
                 {/* Content */}
                 <div>
