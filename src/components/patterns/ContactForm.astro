@@ -19,7 +19,6 @@ const {
 
 <form
   id="contact-form"
-  action={action}
   method="POST"
   class={cn('space-y-6', className)}
   data-success-message={successMessage}
@@ -50,8 +49,6 @@ const {
 
     if (!form || !button || !message) return;
 
-    const successMessage = form.dataset.successMessage || 'Message sent successfully!';
-
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
@@ -59,9 +56,11 @@ const {
       button.textContent = 'Sending...';
       message.classList.add('hidden');
 
+      const formData = new FormData(form);
+      formData.append('access_key', 'ddcacbd3-d4c4-4996-ba47-be366c08beb6');
+
       try {
-        const formData = new FormData(form);
-        const response = await fetch(form.action, {
+        const response = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           body: formData,
         });
@@ -69,14 +68,11 @@ const {
         const data = await response.json();
 
         if (data.success) {
-          message.textContent = successMessage;
+          message.textContent = 'Message sent successfully!';
           message.className = 'text-sm text-success';
           form.reset();
         } else {
-          const errors = data.errors
-            ? Object.values(data.errors).flat().join(', ')
-            : 'Something went wrong';
-          message.textContent = errors as string;
+          message.textContent = data.message || 'Something went wrong';
           message.className = 'text-sm text-destructive';
         }
       } catch {
