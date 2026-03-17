@@ -1,3 +1,4 @@
+export const prerender = false;
 import type { APIRoute } from 'astro';
 import { z } from 'astro/zod';
 
@@ -62,16 +63,33 @@ export const POST: APIRoute = async ({ request }) => {
     // - Forward to a CRM
     // - etc.
 
-    // For now, we just log it (in production, replace with actual handling)
-    if (import.meta.env.DEV) {
-      // eslint-disable-next-line no-console
-      console.log('Contact form submission:', {
+    const resp = await fetch(import.meta.env.CONTACT_FORM_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        access_key: import.meta.env.CONTACT_FORM_ID,
         name: result.data.name,
         email: result.data.email,
-        subject: result.data.subject,
+        subject: result.data.subject || 'New Contact Form Submission',
         message: result.data.message,
-      });
+      }),
+    });
+
+    if (!resp.ok) {
+      console.error('Failed to forward contact form submission:', await resp.text());
+      throw new Error('Failed to forward contact form submission');
     }
+
+    // For now, we just log it (in production, replace with actual handling)
+    // if (import.meta.env.DEV) {
+    //   // eslint-disable-next-line no-console
+    //   console.log('Contact form submission:', {
+    //     name: result.data.name,
+    //     email: result.data.email,
+    //     subject: result.data.subject,
+    //     message: result.data.message,
+    //   });
+    // }
 
     return new Response(JSON.stringify({ success: true }), {
       status: 200,

@@ -1,0 +1,39 @@
+---
+import Badge from '@/components/ui/data-display/Badge/Badge';
+
+interface Props {
+  businessName: string;
+  industry: string;
+  image: string;
+  href?: string;
+}
+
+const { businessName, industry, image, href = '#' } = Astro.props;
+---
+
+<a
+  href={href}
+  class="group bg-surface-subtle relative block aspect-[16/9] overflow-hidden rounded-xl"
+>
+  <!-- Background image -->
+  <div
+    class="absolute inset-0 bg-cover bg-center grayscale transition-all duration-500 ease-in-out group-hover:scale-105 group-hover:grayscale-0"
+    style={`background-image: url('${image}');`}
+  >
+  </div>
+
+  <!-- Overlay: stronger at rest, lighter on hover -->
+  <div class="absolute inset-0 bg-black/60 transition-opacity duration-500 group-hover:bg-black/30">
+  </div>
+
+  <!-- Content -->
+  <div class="absolute inset-0 flex flex-col justify-end p-5">
+    <!-- Badge: hidden at rest, slides up on hover -->
+    <div
+      class="mb-2 translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
+    >
+      <Badge variant="brand">{industry}</Badge>
+    </div>
+    <h3 class="text-lg font-bold text-white drop-shadow-sm">{businessName}</h3>
+  </div>
+</a>

@@ -171,7 +171,7 @@ const buttonId = `${menuId}-button`;
             <span
               class={cn(
                 'font-display text-xl font-bold tracking-tight',
-                isFloating ? 'hdr-logo-text' : (isInvert ? 'text-on-invert' : 'text-brand-500')
+                isFloating ? 'hdr-logo-text' : isInvert ? 'text-on-invert' : 'text-brand-500'
               )}
             >
               {logoText || siteConfig.name}
@@ -197,12 +197,12 @@ const buttonId = `${menuId}-button`;
                   'transition-all duration-(--transition-fast)',
                   isFloating && 'hdr-invert-text',
                   isFloating
-                    ? (isActive(href)
-                        ? 'hdr-nav-active font-semibold'
-                        : 'font-medium opacity-80 hover:opacity-100')
-                    : (isActive(href)
-                        ? 'nav-link-active font-semibold text-foreground bg-secondary'
-                        : 'nav-link-inactive font-medium text-foreground-muted hover:text-foreground hover:bg-secondary/70')
+                    ? isActive(href)
+                      ? 'hdr-nav-active font-semibold'
+                      : 'font-medium opacity-80 hover:opacity-100'
+                    : isActive(href)
+                      ? 'nav-link-active text-foreground bg-secondary font-semibold'
+                      : 'nav-link-inactive text-foreground-muted hover:text-foreground hover:bg-secondary/70 font-medium'
                 )}
                 aria-current={isActive(href) ? 'page' : undefined}
               >
@@ -220,9 +220,7 @@ const buttonId = `${menuId}-button`;
           <slot name="actions" />
         ) : (
           <>
-            {showThemeToggle && (
-              <ThemeToggle class={isFloating ? 'hdr-invert-text' : undefined} />
-            )}
+            {showThemeToggle && <ThemeToggle class={isFloating ? 'hdr-invert-text' : undefined} />}
 
             {actions.map((action) => (
               <Button
@@ -244,6 +242,7 @@ const buttonId = `${menuId}-button`;
                 size="sm"
                 href={ctaHref}
                 target="_blank"
+                variant="brand"
                 class={isFloating ? 'hdr-invert-cta rounded-full' : undefined}
               >
                 {cta.label}
@@ -293,7 +292,7 @@ const buttonId = `${menuId}-button`;
           class={cn(
             'hidden origin-top scale-y-0 opacity-0 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.12)] md:hidden',
             isFloating
-              ? 'rounded-b-2xl bg-background/95 backdrop-blur-xl'
+              ? 'bg-background/95 rounded-b-2xl backdrop-blur-xl'
               : 'border-border bg-background border-t'
           )}
           role="navigation"
@@ -307,16 +306,13 @@ const buttonId = `${menuId}-button`;
           class={cn(
             'hidden origin-top scale-y-0 opacity-0 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.12)] md:hidden',
             isFloating
-              ? 'rounded-b-2xl bg-background/95 backdrop-blur-xl'
+              ? 'bg-background/95 rounded-b-2xl backdrop-blur-xl'
               : 'border-border bg-background border-t'
           )}
           role="navigation"
           aria-label="Mobile navigation"
         >
-          <div class={cn(
-            'space-y-1 py-4',
-            isFloating ? 'px-4' : 'mx-auto max-w-6xl px-6'
-          )}>
+          <div class={cn('space-y-1 py-4', isFloating ? 'px-4' : 'mx-auto max-w-6xl px-6')}>
             {navItems.map(({ label, href }) => (
               <a
                 href={href.startsWith('#') && !isLandingPage ? `/${href}` : href}
@@ -496,37 +492,39 @@ const buttonId = `${menuId}-button`;
   const SCROLL_THRESHOLD = 60;
 
   function initScrollWatcher() {
-    document.querySelectorAll<HTMLElement>('header[data-header-shape="floating"]').forEach((header) => {
-      if (header.dataset.scrollInit) return;
-      header.dataset.scrollInit = 'true';
+    document
+      .querySelectorAll<HTMLElement>('header[data-header-shape="floating"]')
+      .forEach((header) => {
+        if (header.dataset.scrollInit) return;
+        header.dataset.scrollInit = 'true';
 
-      let ticking = false;
+        let ticking = false;
 
-      function onScroll() {
-        if (ticking) return;
-        ticking = true;
+        function onScroll() {
+          if (ticking) return;
+          ticking = true;
 
-        requestAnimationFrame(() => {
-          if (window.scrollY > SCROLL_THRESHOLD) {
-            header.setAttribute('data-scrolled', '');
-          } else {
-            // Don't remove if mobile menu is open
-            const menuId = header.dataset.menuId;
-            const menu = menuId ? document.getElementById(menuId) : null;
-            const menuOpen = menu && !menu.classList.contains('hidden');
-            if (!menuOpen) {
-              header.removeAttribute('data-scrolled');
+          requestAnimationFrame(() => {
+            if (window.scrollY > SCROLL_THRESHOLD) {
+              header.setAttribute('data-scrolled', '');
+            } else {
+              // Don't remove if mobile menu is open
+              const menuId = header.dataset.menuId;
+              const menu = menuId ? document.getElementById(menuId) : null;
+              const menuOpen = menu && !menu.classList.contains('hidden');
+              if (!menuOpen) {
+                header.removeAttribute('data-scrolled');
+              }
             }
-          }
-          ticking = false;
-        });
-      }
+            ticking = false;
+          });
+        }
 
-      window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('scroll', onScroll, { passive: true });
 
-      // Set initial state
-      onScroll();
-    });
+        // Set initial state
+        onScroll();
+      });
   }
 
   initScrollWatcher();
@@ -538,11 +536,13 @@ const buttonId = `${menuId}-button`;
   .mobile-menu-blur {
     opacity: 0.3;
     filter: blur(4px);
-    transition: opacity 200ms, filter 200ms;
+    transition:
+      opacity 200ms,
+      filter 200ms;
   }
 
   /* ===== Floating header: scroll state ===== */
-  [data-header-shape="floating"][data-scrolled] {
+  [data-header-shape='floating'][data-scrolled] {
     background: color-mix(in oklch, var(--color-background) 92%, transparent);
     backdrop-filter: blur(24px);
     border-color: var(--color-border);
@@ -552,37 +552,38 @@ const buttonId = `${menuId}-button`;
   /* ===== Floating header: color flip (invert → normal on scroll) ===== */
 
   /* Text elements: on-invert → foreground */
-  [data-header-shape="floating"][data-header-color-scheme="invert"] .hdr-invert-text {
+  [data-header-shape='floating'][data-header-color-scheme='invert'] .hdr-invert-text {
     color: var(--color-on-invert);
     transition: color 300ms;
   }
-  [data-header-shape="floating"][data-header-color-scheme="invert"][data-scrolled] .hdr-invert-text {
+  [data-header-shape='floating'][data-header-color-scheme='invert'][data-scrolled]
+    .hdr-invert-text {
     color: var(--color-foreground);
   }
 
   /* Logo text: on-invert → brand-500 */
-  [data-header-shape="floating"][data-header-color-scheme="invert"] .hdr-logo-text {
+  [data-header-shape='floating'][data-header-color-scheme='invert'] .hdr-logo-text {
     color: var(--color-on-invert);
     transition: color 300ms;
   }
-  [data-header-shape="floating"][data-header-color-scheme="invert"][data-scrolled] .hdr-logo-text {
+  [data-header-shape='floating'][data-header-color-scheme='invert'][data-scrolled] .hdr-logo-text {
     color: var(--color-brand-500);
   }
 
   /* Non-invert floating: use normal colors */
-  [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-logo-text {
+  [data-header-shape='floating'][data-header-color-scheme='default'] .hdr-logo-text {
     color: var(--color-brand-500);
   }
-  [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-invert-text {
+  [data-header-shape='floating'][data-header-color-scheme='default'] .hdr-invert-text {
     color: var(--color-foreground-muted);
     transition: color 300ms;
   }
-  [data-header-shape="floating"][data-header-color-scheme="default"] .hdr-invert-text:hover {
+  [data-header-shape='floating'][data-header-color-scheme='default'] .hdr-invert-text:hover {
     color: var(--color-foreground);
   }
 
   /* ===== Floating nav link underline indicators ===== */
-  [data-header-shape="floating"] .nav-link::after {
+  [data-header-shape='floating'] .nav-link::after {
     content: '';
     position: absolute;
     bottom: 2px;
@@ -591,41 +592,47 @@ const buttonId = `${menuId}-button`;
     height: 2px;
     background: currentColor;
     border-radius: 1px;
-    transition: left 200ms, right 200ms;
+    transition:
+      left 200ms,
+      right 200ms;
   }
 
-  [data-header-shape="floating"] .nav-link:hover::after,
-  [data-header-shape="floating"] .nav-link.hdr-nav-active::after {
+  [data-header-shape='floating'] .nav-link:hover::after,
+  [data-header-shape='floating'] .nav-link.hdr-nav-active::after {
     left: 12px;
     right: 12px;
   }
 
   /* ===== CTA: invert color flip ===== */
-  [data-header-shape="floating"][data-header-color-scheme="invert"] .hdr-invert-cta {
+  [data-header-shape='floating'][data-header-color-scheme='invert'] .hdr-invert-cta {
     background: white;
     color: #111;
     border-color: transparent;
-    transition: background 300ms, color 300ms, border-color 300ms;
+    transition:
+      background 300ms,
+      color 300ms,
+      border-color 300ms;
   }
-  [data-header-shape="floating"][data-header-color-scheme="invert"] .hdr-invert-cta:hover {
+  [data-header-shape='floating'][data-header-color-scheme='invert'] .hdr-invert-cta:hover {
     background: rgba(255, 255, 255, 0.9);
   }
-  [data-header-shape="floating"][data-header-color-scheme="invert"][data-scrolled] .hdr-invert-cta {
+  [data-header-shape='floating'][data-header-color-scheme='invert'][data-scrolled] .hdr-invert-cta {
     background: var(--color-primary);
     color: var(--color-primary-foreground);
     border-color: transparent;
   }
-  [data-header-shape="floating"][data-header-color-scheme="invert"][data-scrolled] .hdr-invert-cta:hover {
+  [data-header-shape='floating'][data-header-color-scheme='invert'][data-scrolled]
+    .hdr-invert-cta:hover {
     opacity: 0.9;
   }
 
   /* ===== Reduced motion ===== */
   @media (prefers-reduced-motion: reduce) {
-    [data-header-shape="floating"],
-    [data-header-shape="floating"] .hdr-invert-text,
-    [data-header-shape="floating"] .hdr-logo-text,
-    [data-header-shape="floating"] .hdr-invert-cta,
-    [data-header-shape="floating"] .nav-link::after {
+    [data-header-shape='floating'],
+    [data-header-shape='floating'] .hdr-invert-text,
+    [data-header-shape='floating'] .hdr-logo-text,
+    [data-header-shape='floating'] .hdr-invert-cta,
+    [data-header-shape='floating'] .nav-link::after {
       transition: none !important;
     }
   }

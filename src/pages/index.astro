@@ -1,9 +1,13 @@
 ---
 import MarketingLayout from '@/layouts/MarketingLayout.astro';
-import PageLayout from '@/layouts/PageLayout.astro';
 import HeroSection from '@/components/hero/Hero.astro';
 import Button from '@/components/ui/form/Button/Button';
 import Icon from '@/components/ui/primitives/Icon/Icon';
+import Card from '@/components/ui/data-display/Card/Card.astro';
+import ContactForm from '@/components/patterns/ContactForm.astro';
+import PortfolioCard from '@/components/patterns/PortfolioCard.astro';
+import VelocityFeatureTabs from '@/components/ui/marketing/Features/FeaturesTabs';
+import TestimonialCard from '@/components/patterns/TestimonialCard.astro';
 ---
 
 <MarketingLayout
@@ -15,49 +19,300 @@ import Icon from '@/components/ui/primitives/Icon/Icon';
       Home Service Websites That <span class="text-brand-500">Actually Get You Calls</span>
     </h1>
     <p slot="description">
-      Done‑for‑you contractor website and lead system that turns clicks, missed calls, and past customers into steady quote requests in days, not months
+      Done‑for‑you contractor website and lead system that turns clicks, missed calls, and past
+      customers into steady quote requests in days, not months
     </p>
     <Fragment slot="actions">
-      <Button size="lg" href="https://docs.deployvelocity.com" target="_blank">
-        View Docs
-        <Icon name="arrow-right" size="sm" />
-      </Button>
       <Button
         size="lg"
-        variant="outline"
-        href="https://github.com/southwellmedia/velocity"
+        href="https://cal.com/extensibl-media/velocity-chat"
         target="_blank"
+        variant={'brand'}
       >
-        <Icon name="github" size="sm" />
-        View on GitHub
+        Book A Call Today
+        <Icon name="arrow-right" size="sm" />
       </Button>
     </Fragment>
   </HeroSection>
-  <!-- <section class="py-24 md:py-32">
-    <div class="container mx-auto px-4 text-center">
-      <h1 class="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-        Welcome to <span class="text-primary">Velocity</span>
-      </h1>
-      <p class="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-        Your new Astro site is ready. Edit this page at
-        <code class="bg-muted px-2 py-1 rounded text-sm">src/pages/index.astro</code>
-      </p>
-      <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-        <a
-          href="/blog"
-          class="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
-        >
-          View Blog
-        </a>
-        <a
-          href="https://docs.astro.build"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center rounded-md border border-input bg-background px-6 py-3 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground"
-        >
-          Astro Docs
-        </a>
+
+  <!-- Pain Points Section -->
+  <section class="py-[var(--space-section-lg)]">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="mb-12 text-center">
+        <h2 class="text-3xl font-bold tracking-tight">Sound Familiar?</h2>
+        <p class="text-foreground-muted mx-auto mt-3 max-w-2xl">
+          Most home service businesses are losing jobs every week because of these four problems. We
+          fix all of them.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-4">
+        <Card variant="solid" padding="lg">
+          <h3 class="text-xl font-bold tracking-tight">Slow Months</h3>
+          <p class="text-foreground-muted mt-3">
+            You're great at the work but some months the phone just stops ringing and you don't know
+            why or how to fix it.
+          </p>
+        </Card>
+        <Card variant="solid" padding="lg">
+          <h3 class="text-xl font-bold tracking-tight">A Website That Does Nothing</h3>
+          <p class="text-foreground-muted mt-3">
+            Your site looks fine but it's never actually booked you a job. It's just sitting there
+            while competitors take your customers.
+          </p>
+        </Card>
+        <Card variant="solid" padding="lg">
+          <h3 class="text-xl font-bold tracking-tight">Invisible on Google</h3>
+          <p class="text-foreground-muted mt-3">
+            When someone in your area searches for what you do, your competitors show up and you
+            don't. That's money walking out the door every single day.
+          </p>
+        </Card>
+        <Card variant="solid" padding="lg">
+          <h3 class="text-xl font-bold tracking-tight">No Time to Deal With Any of It</h3>
+          <p class="text-foreground-muted mt-3">
+            You're running a business, managing jobs, and chasing invoices. Nobody has time to
+            figure out Google, reviews, and websites on top of that.
+          </p>
+        </Card>
       </div>
     </div>
-  </section> -->
+  </section>
+
+  <!-- Solution Section -->
+  <VelocityFeatureTabs client:visible />
+
+  <!-- What's Included Section -->
+  <section id="pricing" class="py-[var(--space-section-lg)]">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="mb-12 text-center">
+        <h2 class="text-3xl font-bold tracking-tight">Everything You Need. Nothing You Don't.</h2>
+        <p class="text-foreground-muted mt-4 text-lg">
+          Starting at $197/mo — Setup fee currently waived for qualifying businesses.
+        </p>
+      </div>
+      <Card variant="default" padding="lg" class="mx-auto max-w-2xl">
+        <ul class="space-y-3">
+          {
+            [
+              'High-converting 5–7 page website showcasing your business',
+              'Hosting and maintenance included',
+              '4 content updates per month',
+              'Google Business Profile setup and optimization',
+              'Review monitoring and management',
+              'Analytics and performance tracking',
+              'Lead capture setup',
+              'Add-ons available to accelerate local rankings',
+            ].map((item) => (
+              <li class="flex items-start gap-3">
+                <span class="text-brand-500 mt-0.5 shrink-0">
+                  <Icon name="check" size="sm" />
+                </span>
+                <span class="text-foreground-secondary">{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <div class="mt-8 text-center">
+          <Button
+            size="lg"
+            href="https://cal.com/extensibl-media/velocity-chat"
+            variant={'brand'}
+            target="_blank">Book A Call Today</Button
+          >
+        </div>
+      </Card>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="py-[var(--space-section-lg)]">
+    <div class="mx-auto max-w-6xl px-6">
+      <h2 class="mb-12 text-center text-3xl font-bold tracking-tight">
+        Up and Running in Days — Not Months
+      </h2>
+      <div class="grid gap-6 md:grid-cols-3">
+        <Card variant="solid" padding="lg">
+          <div class="text-brand-500 mb-4 text-4xl leading-none font-black">01</div>
+          <h3 class="text-xl font-bold">Book a Free Audit Call</h3>
+          <p class="text-foreground-muted mt-2">
+            We learn about your business, your goals, and where you're losing jobs online. No
+            pressure, no pitch — just a straight conversation.
+          </p>
+        </Card>
+        <Card variant="solid" padding="lg">
+          <div class="text-brand-500 mb-4 text-4xl leading-none font-black">02</div>
+          <h3 class="text-xl font-bold">We Build Everything For You</h3>
+          <p class="text-foreground-muted mt-2">
+            Your website, Google Business Profile, lead capture, and tracking — all set up and ready
+            to bring in calls.
+          </p>
+        </Card>
+        <Card variant="solid" padding="lg">
+          <div class="text-brand-500 mb-4 text-4xl leading-none font-black">03</div>
+          <h3 class="text-xl font-bold">Your Phone Starts Ringing</h3>
+          <p class="text-foreground-muted mt-2">
+            You get a site that works, a presence that ranks, and a team managing it every month so
+            you never have to think about it again.
+          </p>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who This Is For Section -->
+  <section class="py-[var(--space-section-lg)]">
+    <div class="mx-auto max-w-6xl px-6">
+      <h2 class="mb-12 text-center text-3xl font-bold tracking-tight">Is This Right For You?</h2>
+      <div class="grid gap-6 md:grid-cols-2">
+        <Card variant="default" padding="lg">
+          <h3 class="mb-4 text-xl font-bold">This IS for you if:</h3>
+          <ul class="space-y-3">
+            {
+              [
+                'You run a contracting or home service business and want more calls',
+                'Your current website has never actually booked you a job',
+                "You're too busy running jobs to manage your online presence",
+                "You want someone to handle all of it so you don't have to",
+                "You're ready to invest in something that actually grows your business",
+              ].map((item) => (
+                <li class="flex items-start gap-3">
+                  <span class="text-brand-500 mt-0.5 shrink-0">
+                    <Icon name="check" size="sm" />
+                  </span>
+                  <span class="text-foreground-secondary">{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </Card>
+        <Card variant="solid" padding="lg">
+          <h3 class="mb-4 text-xl font-bold">This is NOT for you if:</h3>
+          <ul class="space-y-3">
+            {
+              [
+                "You're a side gig or not looking to grow",
+                'You want to micromanage every design decision',
+                "You're already booked out for months and don't need more work",
+                "You're looking for the cheapest option available",
+              ].map((item) => (
+                <li class="flex items-start gap-3">
+                  <span class="text-foreground-subtle mt-0.5 shrink-0">
+                    <Icon name="x" size="sm" />
+                  </span>
+                  <span class="text-foreground-secondary">{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="py-[var(--space-section-lg)]">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="mb-12 text-center">
+        <h2 class="text-3xl font-bold tracking-tight">Our Work</h2>
+        <p class="text-foreground-muted mt-4 text-lg">Real websites built for real businesses.</p>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2">
+        <PortfolioCard
+          businessName="Russtoration Painting"
+          industry="Painting"
+          image="src/assets/images/russtoration.png"
+          href="https://www.russtorationpainting.com"
+        />
+        <PortfolioCard
+          businessName="High Desert Renovations"
+          industry="Remodeling"
+          image="src/assets/images/hdr.png"
+          href="https://www.highdesertrenovations.com"
+        />
+        <PortfolioCard
+          businessName="Luke Mori Real Estate"
+          industry="Real Estate"
+          image="src/assets/images/lmre.png"
+          href="https://www.lukemori.com"
+        />
+        <PortfolioCard
+          businessName="Serenity Vista"
+          industry="Rehabilitation"
+          image="src/assets/images/serenity-vista.png"
+          href="https://www.serenityvista.com"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="py-[var(--space-section-lg)]">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="mb-12 text-center">
+        <h2 class="text-3xl font-bold tracking-tight">What Our Clients Say</h2>
+        <p class="text-foreground-muted mt-3">Real results from real home service businesses.</p>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        <TestimonialCard
+          quote="Before working with Velocity I was relying on word of mouth alone. Within 60 days of launching my new site I had three new roofing jobs come directly from Google. It paid for itself fast."
+          name="Marcus T."
+          role="Owner, Peak Roofing Co."
+          avatar="src/assets/images/marcus.jpeg"
+          rating={5}
+        />
+        <TestimonialCard
+          quote="Velocity Web Studio was recommended to us to build a new website for Serenity Vista. They proposed a project plan with schedule of payments, and delivered as promised. They are professional, responsive, trustworthy and can be counted on to do quality work."
+          name="John D."
+          role="Owner, Serenity Vista"
+          avatar="https://res.cloudinary.com/dpoanqywm/image/upload/v1701828898/john-derry_o4s1rb.webp"
+          rating={5}
+        />
+        <TestimonialCard
+          quote="I was skeptical at first but the results speak for themselves. My phone rings more consistently now and I'm not doing anything different — they handle all of it."
+          name="Russel W."
+          role="Owner, Russtoration Painting"
+          avatar="src/assets/images/russel.png"
+          rating={5}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="invert-section bg-background py-[var(--space-section-lg)]">
+    <div class="mx-auto max-w-3xl px-6 text-center">
+      <h2 class="text-3xl font-bold tracking-tight">
+        Ready to Get a Website That Actually Books You Jobs?
+      </h2>
+      <p class="text-foreground-muted mt-4 text-lg">
+        Setup fee currently waived for qualifying businesses. 18-month agreement. Cancel anytime
+        after.
+      </p>
+      <div class="mt-8">
+        <Button
+          variant="brand"
+          size="lg"
+          href="https://cal.com/extensibl-media/velocity-chat"
+          target="_blank"
+        >
+          Book Your Free Audit
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form Section -->
+  <section id="contact" class="py-[var(--space-section-lg)]">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="mb-10 text-center">
+        <h2 class="text-3xl font-bold tracking-tight">Not Ready to Book a Call Yet?</h2>
+        <p class="text-foreground-muted mt-4 text-lg">
+          Send us a message and we'll get back to you within 1 business day.
+        </p>
+      </div>
+      <Card variant="default" padding="lg" class="mx-auto max-w-2xl">
+        <ContactForm />
+      </Card>
+    </div>
+  </section>
 </MarketingLayout>

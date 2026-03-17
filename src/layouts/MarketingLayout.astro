@@ -46,19 +46,12 @@ const {
     colorScheme="default"
     showCta={true}
     cta={{ label: 'Get Started', href: '#get-started' }}
-    actions={[
-      {
-        icon: 'github',
-        href: 'https://github.com/southwellmedia/velocity',
-        label: 'GitHub',
-        iconOnly: true,
-        target: '_blank',
-      },
-    ]}
     showLanguageSwitcher={false}
   />
 
   <slot />
 
-  <Footer slot="footer" layout="simple" background="secondary" showCopyright={false} />
+  <Footer slot="footer" layout="simple" background="secondary" showCopyright={false}>
+    <span slot="tagline">A division of Extensibl Media</span>
+  </Footer>
 </BaseLayout>
