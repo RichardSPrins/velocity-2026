@@ -8,6 +8,12 @@ import ContactForm from '@/components/patterns/ContactForm.astro';
 import PortfolioCard from '@/components/patterns/PortfolioCard.astro';
 import VelocityFeatureTabs from '@/components/ui/marketing/Features/FeaturesTabs';
 import TestimonialCard from '@/components/patterns/TestimonialCard.astro';
+import russHeadshot from 'src/assets/images/russel.png';
+import marcusHeadshot from 'src/assets/images/marcus.jpeg';
+import russtorationProject from 'src/assets/images/russtoration.png';
+import hdrProject from 'src/assets/images/hdr.png';
+import lmreProject from 'src/assets/images/lmre.png';
+import serenityVistaProject from 'src/assets/images/serenity-vista.png';
 ---
 
 <MarketingLayout
@@ -220,25 +226,25 @@ import TestimonialCard from '@/components/patterns/TestimonialCard.astro';
         <PortfolioCard
           businessName="Russtoration Painting"
           industry="Painting"
-          image="src/assets/images/russtoration.png"
+          image={russtorationProject.src}
           href="https://www.russtorationpainting.com"
         />
         <PortfolioCard
           businessName="High Desert Renovations"
           industry="Remodeling"
-          image="src/assets/images/hdr.png"
+          image={hdrProject.src}
           href="https://www.highdesertrenovations.com"
         />
         <PortfolioCard
           businessName="Luke Mori Real Estate"
           industry="Real Estate"
-          image="src/assets/images/lmre.png"
+          image={lmreProject.src}
           href="https://www.lukemori.com"
         />
         <PortfolioCard
           businessName="Serenity Vista"
           industry="Rehabilitation"
-          image="src/assets/images/serenity-vista.png"
+          image={serenityVistaProject.src}
           href="https://www.serenityvista.com"
         />
       </div>
@@ -257,7 +263,7 @@ import TestimonialCard from '@/components/patterns/TestimonialCard.astro';
           quote="Before working with Velocity I was relying on word of mouth alone. Within 60 days of launching my new site I had three new roofing jobs come directly from Google. It paid for itself fast."
           name="Marcus T."
           role="Owner, Peak Roofing Co."
-          avatar="src/assets/images/marcus.jpeg"
+          avatar={marcusHeadshot.src}
           rating={5}
         />
         <TestimonialCard
@@ -271,7 +277,7 @@ import TestimonialCard from '@/components/patterns/TestimonialCard.astro';
           quote="I was skeptical at first but the results speak for themselves. My phone rings more consistently now and I'm not doing anything different — they handle all of it."
           name="Russel W."
           role="Owner, Russtoration Painting"
-          avatar="src/assets/images/russel.png"
+          avatar={russHeadshot.src}
           rating={5}
         />
       </div>
