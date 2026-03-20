@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import { Monitor, MapPin, Search, Star, Shield } from 'lucide-react';
 import { VerticalTabs, type VerticalTab } from '@/components/ui/overlay/VerticalTabs';
+import webDesignImg from '../../../../assets/images/web-design.webp';
+import reviewMgmtImg from '../../../../assets/images/google-reviews.png';
+import localSeoImg from '../../../../assets/images/local-seo.jpg';
+import webSupportImg from 'src/assets/images/web-support.png';
+import gbpImg from 'src/assets/images/Google-My-Business.jpg';
 
 // --- Tab Metadata ---
 const tabs: VerticalTab[] = [
@@ -57,7 +62,7 @@ const tabContent: Record<
       'Fast load times, clear calls-to-action, and trust signals throughout',
       'Built to rank and built to convert — not just look good',
     ],
-    image: 'src/assets/images/web-design.webp',
+    image: webDesignImg.src,
     imageAlt: 'Website design mockup for home service business',
   },
   gbp: {
@@ -70,7 +75,7 @@ const tabContent: Record<
       'Regular GBP posts to signal activity to Google',
       'Photo uploads and Q&A management included',
     ],
-    image: 'src/assets/images/Google-My-Business.jpg',
+    image: gbpImg.src,
     imageAlt: 'Google Business Profile optimization mockup',
   },
   seo: {
@@ -83,7 +88,7 @@ const tabContent: Record<
       'Citation building across top directories',
       'Monthly performance reports so you see the progress',
     ],
-    image: 'src/assets/images/local-seo.jpg',
+    image: localSeoImg.src,
     imageAlt: 'Local SEO rankings mockup',
   },
   reviews: {
@@ -96,7 +101,7 @@ const tabContent: Record<
       'Review monitoring across Google and other platforms',
       'New reviews highlighted on your website automatically',
     ],
-    image: 'src/assets/images/google-reviews.png',
+    image: reviewMgmtImg.src,
     imageAlt: 'Review management dashboard mockup',
   },
   support: {
@@ -109,23 +114,23 @@ const tabContent: Record<
       'Analytics and performance tracking with monthly summary',
       'One point of contact for everything digital',
     ],
-    image: 'src/assets/images/web-support.png',
+    image: webSupportImg.src,
     imageAlt: 'Ongoing support and maintenance mockup',
   },
 };
 
 // --- Placeholder Image Component ---
-function MockupPlaceholder({ alt }: { alt: string }) {
-  return (
-    <div className="bg-background-secondary border-border flex aspect-video w-full items-center justify-center rounded-lg border-2 border-dashed">
-      <div className="text-center">
-        <div className="bg-border mx-auto mb-3 h-12 w-12 rounded-lg" />
-        <p className="text-foreground-muted text-sm">{alt}</p>
-        <p className="text-foreground-subtle mt-1 text-xs">Replace with mockup image</p>
-      </div>
-    </div>
-  );
-}
+// function MockupPlaceholder({ alt }: { alt: string }) {
+//   return (
+//     <div className="bg-background-secondary border-border flex aspect-video w-full items-center justify-center rounded-lg border-2 border-dashed">
+//       <div className="text-center">
+//         <div className="bg-border mx-auto mb-3 h-12 w-12 rounded-lg" />
+//         <p className="text-foreground-muted text-sm">{alt}</p>
+//         <p className="text-foreground-subtle mt-1 text-xs">Replace with mockup image</p>
+//       </div>
+//     </div>
+//   );
+// }
 
 // --- Main Component ---
 export function VelocityFeatureTabs() {
