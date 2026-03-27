@@ -93,38 +93,43 @@ import serenityVistaProject from 'src/assets/images/serenity-vista.png';
       <div class="mb-12 text-center">
         <h2 class="text-3xl font-bold tracking-tight">Everything You Need. Nothing You Don't.</h2>
         <p class="text-foreground-muted mt-4 text-lg">
-          Starting at $197/mo — Setup fee currently waived for qualifying businesses.
+          One flat monthly rate. No surprises, no hidden fees, no long list of add-ons to figure out.
+          <br />
+          <strong>$297/mo</strong> — $997 setup fee waived for qualifying businesses.
         </p>
       </div>
       <Card variant="default" padding="lg" class="mx-auto max-w-2xl">
         <ul class="space-y-3">
-          {
-            [
-              'High-converting 5–7 page website showcasing your business',
-              'Hosting and maintenance included',
-              '4 content updates per month',
-              'Google Business Profile setup and optimization',
-              'Review monitoring and management',
-              'Analytics and performance tracking',
-              'Lead capture setup',
-              'Add-ons available to accelerate local rankings',
-            ].map((item) => (
-              <li class="flex items-start gap-3">
-                <span class="text-brand-500 mt-0.5 shrink-0">
-                  <Icon name="check" size="sm" />
-                </span>
-                <span class="text-foreground-secondary">{item}</span>
-              </li>
-            ))
-          }
+          {[
+            'Professional website built and hosted for your business',
+            'Google Business Profile setup and ongoing optimization',
+            'On-page SEO and local keyword targeting',
+            'Missed call text back — leads get a response instantly',
+            'After-hours lead capture and automatic follow-up',
+            'Review request automation after every job',
+            'Reputation monitoring and response management',
+            'Monthly GBP posts and content updates',
+            'AI chat on your site — answers questions, captures leads 24/7',
+            'Past customer reactivation campaigns',
+            'Monthly performance report',
+          ].map((item) => (
+            <li class="flex items-start gap-3">
+              <span class="text-brand-500 mt-0.5 shrink-0">
+                <Icon name="check" size="sm" />
+              </span>
+              <span class="text-foreground-secondary">{item}</span>
+            </li>
+          ))}
         </ul>
         <div class="mt-8 text-center">
           <Button
             size="lg"
             href="https://cal.com/extensibl-media/velocity-chat"
             variant={'brand'}
-            target="_blank">Book A Call Today</Button
+            target="_blank"
           >
+            Book A Call Today
+          </Button>
         </div>
       </Card>
     </div>
@@ -274,7 +279,7 @@ import serenityVistaProject from 'src/assets/images/serenity-vista.png';
           rating={5}
         />
         <TestimonialCard
-          quote="I was skeptical at first but the results speak for themselves. My phone rings more consistently now and I'm not doing anything different — they handle all of it."
+          quote="I was skeptical at first but the results speak for themselves. My phone rings more consistently now and I'm not doing anything different. They handle all of it."
           name="Russel W."
           role="Owner, Russtoration Painting"
           avatar={russHeadshot.src}

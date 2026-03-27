@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Monitor, MapPin, Search, Star, Shield } from 'lucide-react';
+import { Monitor, MapPin, Search, Star, Shield, Unplug } from 'lucide-react';
 import { VerticalTabs, type VerticalTab } from '@/components/ui/overlay/VerticalTabs';
 import webDesignImg from '../../../../assets/images/web-design.webp';
 import reviewMgmtImg from '../../../../assets/images/google-reviews.png';
@@ -10,16 +10,10 @@ import gbpImg from 'src/assets/images/Google-My-Business.jpg';
 // --- Tab Metadata ---
 const tabs: VerticalTab[] = [
   {
-    id: 'website',
-    label: 'Website Design',
+    id: 'design',
+    label: 'Web Design',
     description: 'Built to convert visitors',
     icon: Monitor,
-  },
-  {
-    id: 'gbp',
-    label: 'Google Business Profile',
-    description: 'Show up where it counts',
-    icon: MapPin,
   },
   {
     id: 'seo',
@@ -28,94 +22,94 @@ const tabs: VerticalTab[] = [
     icon: Search,
   },
   {
-    id: 'reviews',
-    label: 'Review Management',
+    id: 'gbp',
+    label: 'GMB Management',
+    description: 'Own the local map pack',
+    icon: MapPin,
+  },
+  {
+    id: 'reputation',
+    label: 'Reputation Management',
     description: 'Build trust automatically',
     icon: Star,
   },
   {
-    id: 'support',
-    label: 'Ongoing Support',
-    description: 'We handle everything',
-    icon: Shield,
+    id: 'automations',
+    label: 'Automations',
+    description: 'Never lose a lead again',
+    icon: Unplug,
   },
 ];
 
 // --- Tab Content ---
 const tabContent: Record<
   string,
-  {
-    title: string;
-    description: string;
-    bullets: string[];
-    image: string;
-    imageAlt: string;
-  }
+  { title: string; description: string; bullets: string[]; image: string; imageAlt: string }
 > = {
-  website: {
+  design: {
     title: 'A Website That Actually Books Jobs',
     description:
-      'Most contractor websites look fine but never generate a single call. We build sites designed from the ground up to convert visitors into quote requests.',
+      'Most contractor websites look fine but never generate a single call. We build sites designed from the ground up to convert visitors into quote requests — not just look good.',
     bullets: [
-      '5–7 page professional website tailored to your business',
+      'Professional website built specifically for your business and service area',
       'Mobile-first design — most local searches happen on phones',
       'Fast load times, clear calls-to-action, and trust signals throughout',
-      'Built to rank and built to convert — not just look good',
+      'Local service pages built to rank for the areas you actually work in',
     ],
     image: webDesignImg.src,
     imageAlt: 'Website design mockup for home service business',
   },
-  gbp: {
-    title: 'Dominate the Google Local Pack',
-    description:
-      "When someone searches 'plumber near me' or 'HVAC contractor in [city]', the first thing they see is the Google Map pack. We make sure you're in it.",
-    bullets: [
-      'Full Google Business Profile setup and optimization',
-      'Service areas, categories, and attributes configured correctly',
-      'Regular GBP posts to signal activity to Google',
-      'Photo uploads and Q&A management included',
-    ],
-    image: gbpImg.src,
-    imageAlt: 'Google Business Profile optimization mockup',
-  },
   seo: {
     title: 'Get Found by Customers Ready to Hire',
     description:
-      'Local SEO puts your business in front of people actively searching for what you do in your area. No ad spend required.',
+      'Local SEO puts your business in front of people actively searching for what you do in your area. No ad spend required — just the right setup done right from day one.',
     bullets: [
       'On-page SEO for every page on your site',
-      'Local keyword targeting for your service area',
-      'Citation building across top directories',
-      'Monthly performance reports so you see the progress',
+      'Local keyword targeting for your specific service areas',
+      'Citation building so your business information is consistent everywhere online',
+      'Monthly performance reports so you can see exactly what is working',
     ],
     image: localSeoImg.src,
     imageAlt: 'Local SEO rankings mockup',
   },
-  reviews: {
+  gbp: {
+    title: 'Dominate the Google Local Pack',
+    description:
+      'When someone searches for a contractor in your area the first thing they see is the Google Map pack. We make sure you are in it — and that your profile actually converts that visibility into calls.',
+    bullets: [
+      'Full Google Business Profile setup and optimization',
+      'Service areas, categories, and attributes configured correctly',
+      "Regular posts and photo updates to stay active in Google's eyes",
+      'Q&A management and profile monitoring included every month',
+    ],
+    image: gbpImg.src,
+    imageAlt: 'Google Business Profile optimization mockup',
+  },
+  reputation: {
     title: 'More 5-Star Reviews Without Chasing Anyone',
     description:
-      'Reviews are the #1 trust signal for home service businesses. We set up a system that consistently brings in new reviews from your happy customers.',
+      'Reviews are the number one trust signal for home service businesses. We set up a system that consistently brings in new reviews from your happy customers — without you having to ask.',
     bullets: [
-      'Automated review request follow-ups after jobs',
-      'Private feedback routing so complaints stay offline',
+      'Automated review requests sent after every completed job',
+      'Negative feedback routed privately before it hits Google',
       'Review monitoring across Google and other platforms',
-      'New reviews highlighted on your website automatically',
+      'Response management so every review gets acknowledged',
     ],
     image: reviewMgmtImg.src,
     imageAlt: 'Review management dashboard mockup',
   },
-  support: {
-    title: 'Your Digital Presence — Fully Managed',
+  automations: {
+    title: 'Never Lose a Lead — Day or Night',
     description:
-      'You run the jobs. We run your online presence. No tech headaches, no chasing updates, no figuring out Google on your own.',
+      'Most contractors lose jobs not because of bad work but because they missed the call, took too long to respond, or had no follow-up in place. We fix all of that.',
     bullets: [
-      '4 content updates per month — just send us what changed',
-      'Hosting, uptime monitoring, and security included',
-      'Analytics and performance tracking with monthly summary',
-      'One point of contact for everything digital',
+      'Missed calls get an instant text back so leads never go cold',
+      'After-hours inquiries get an immediate response without you lifting a finger',
+      'Every lead that contacts you gets followed up with automatically',
+      'Past customers re-engaged to bring in repeat business and referrals',
     ],
     image: webSupportImg.src,
-    imageAlt: 'Ongoing support and maintenance mockup',
+    imageAlt: 'Lead automation and follow up system mockup',
   },
 };
 
@@ -134,7 +128,7 @@ const tabContent: Record<
 
 // --- Main Component ---
 export function VelocityFeatureTabs() {
-  const [activeTab, setActiveTab] = useState('website');
+  const [activeTab, setActiveTab] = useState('design');
   const active = tabContent[activeTab];
 
   return (
