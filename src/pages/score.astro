@@ -1,0 +1,40 @@
+---
+import Button from '@/components/ui/form/Button/Button';
+import Icon from '@/components/ui/primitives/Icon/Icon';
+import MarketingLayout from "@/layouts/MarketingLayout.astro";
+import HeroSection from '@/components/hero/Hero.astro';
+import Card from '@/components/ui/data-display/Card/Card.astro';
+import ContactForm from '@/components/patterns/ContactForm.astro';
+---
+
+<MarketingLayout
+  title="Welcome"
+  description="Welcome to your new Velocity site. Start building something amazing."
+>
+  <HeroSection layout='split'>
+    <h1 slot="title">
+      Home Service Websites That <span class="text-brand-500">Actually Get You Calls</span>
+    </h1>
+    <p slot="description">
+      Done‑for‑you contractor website and lead system that turns clicks, missed calls, and past
+      customers into steady quote requests in days, not months
+    </p>
+    <Fragment slot="actions">
+      <Button
+        size="lg"
+        href="https://api.velocitywebstudio.com/widget/booking/CMbwt09JaJslZKjNBGoW"
+        target="_blank"
+        variant={'brand'}
+      >
+        Book A Call Today
+        <Icon name="arrow-right" size="sm" />
+      </Button>
+    </Fragment>
+    <div slot="aside">
+        <Card variant="default" padding="lg" class="mx-auto max-w-2xl">
+            <ContactForm />
+          </Card>
+    </div>
+  </HeroSection>
+
+  </MarketingLayout>
